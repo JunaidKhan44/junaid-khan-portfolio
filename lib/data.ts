@@ -4,7 +4,7 @@
  * portfolio site, or the certificate images that were already part of that site.
  * Items marked TODO need input from Junaid before they can be shown.
  */
-
+import { assetPath } from "@/lib/utils";
 export const site = {
   name: "Junaid Khan",
   title: "Senior Software Engineer",
@@ -13,7 +13,7 @@ export const site = {
   email: "junaidk.official7@gmail.com",
   location: "Pakistan",
   careerStart: 2020, // Funprime Technology, March 2020
-  cvHref: "/cv.pdf",
+  cvHref: assetPath("/cv.pdf"),
   githubUser: "JunaidKhan44",
   links: {
     github: "https://github.com/JunaidKhan44",
@@ -300,14 +300,14 @@ export const projects: Project[] = [
     description:
       "Next-generation, cloud-native, tenant-based network monitoring. Contributed to evolving open-source Horizon towards a microservices architecture.",
     stack: ["Java 17+", "gRPC", "Kafka", "Kubernetes", "Vue.js"],
-    image: "/assets/img/lokahi.png",
+    image: assetPath("/assets/img/lokahi.png"),
   },
   {
     name: "OpenNMS Horizon / Meridian",
     kind: "Open-source · Network monitoring",
     description: "Open-source network monitoring platform able to monitor IoT and software devices.",
     stack: ["Java", "OSGi", "Apache Karaf"],
-    image: "/assets/img/Horizon-Meridian.png",
+    image: assetPath("/assets/img/Horizon-Meridian.png"),
   },
   {
     name: "IRIS 2.0",
@@ -315,7 +315,7 @@ export const projects: Project[] = [
     description:
       "A faster, easier and more efficient tax-automation system built on a microservices architecture at PRAL for FBR.",
     stack: ["Java", "Spring Boot", "Microservices", "Oracle"],
-    image: "/assets/img/iris-2.0.png",
+    image: assetPath("/assets/img/iris-2.0.png"),
   },
   {
     name: "PRA, POS & NSTR",
@@ -323,7 +323,7 @@ export const projects: Project[] = [
     description:
       "Revenue, point-of-sale and national sales tax return systems delivered with the PRAL engineering team.",
     stack: ["J2EE", "Spring Boot", "Hibernate", "PL/SQL"],
-    image: "/assets/img/pra.jpg",
+    image: assetPath("/assets/img/pra.jpg"),
   },
 ];
 
@@ -341,28 +341,28 @@ export const certifications: Cert[] = [
     name: "Agile Scrum Master (ASM®)",
     issuer: "Simplilearn SkillUP",
     date: "Dec 2023",
-    image: "/assets/img/agile.jpg",
+    image: assetPath("/assets/img/agile.jpg"),
     accent: "#f59e0b",
   },
   {
     name: "Getting Started with NodeJS",
     issuer: "Simplilearn SkillUP",
     date: "Oct 2023",
-    image: "/assets/img/node.jpg",
+    image: assetPath("/assets/img/node.jpg"),
     accent: "#22c55e",
   },
   {
     name: "Machine Learning Algorithms",
     issuer: "Great Learning Academy",
     date: "Oct 2023",
-    image: "/assets/img/ml.jpg",
+    image: assetPath("/assets/img/ml.jpg"),
     accent: "#38bdf8",
   },
   {
     name: "Spring MVC, Spring Boot and Rest Controllers",
     issuer: "LearnQuest · Coursera",
     date: "Oct 2022",
-    image: "/assets/img/coursea.jpg",
+    image: assetPath("/assets/img/coursea.jpg"),
     accent: "#3b82f6",
     verifyUrl: "https://coursera.org/verify/83MACH4H6JYZ",
   },
@@ -370,7 +370,7 @@ export const certifications: Cert[] = [
     name: "Fundamentals of Digital Marketing",
     issuer: "Google Digital Garage",
     date: "Aug 2022",
-    image: "/assets/img/google.jpg",
+    image: assetPath("/assets/img/google.jpg"),
     accent: "#a78bfa",
     verifyUrl: "https://learndigital.withgoogle.com/link/1qsdpcedm9s",
   },
@@ -378,14 +378,14 @@ export const certifications: Cert[] = [
     name: "Content Marketing Certified",
     issuer: "HubSpot Academy",
     date: "Sep 2022",
-    image: "/assets/img/hubspot.png",
+    image: assetPath("/assets/img/hubspot.png"),
     accent: "#a78bfa",
   },
   {
     name: "Start Writing Prompt like a Pro ",
     issuer: "Google by Coursera",
     date: "Jul 2026",
-    image: "/assets/img/prompt.png",
+    image: assetPath("/assets/img/prompt.png"),
     accent: "#a78bfa",
   },
   
