@@ -35,7 +35,7 @@ export function Achievements() {
       </div>
 
       <h3 className="mt-14 font-display text-xl font-semibold">What colleagues say</h3>
-      <p className="mt-1 text-xs text-muted">Feedback from colleagues and leaders I've had the opportunity to work with.</p>
+      <p className="mt-1 text-xs text-muted">Feedback from colleagues and leaders I&apos;ve had the opportunity to work with.</p>
       <div className="mt-6 grid gap-5 md:grid-cols-3">
         {recommendations.map((r, i) => (
           <Reveal key={r.name} delay={i * 0.07}>

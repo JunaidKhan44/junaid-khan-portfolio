@@ -144,7 +144,7 @@ export async function GitHubSection() {
             </p>
             <p className="mt-5 text-xs uppercase tracking-widest text-muted">Recent public activity in other people’s repositories</p>
             {external.length === 0 ? (
-              <p className="mt-2 text-sm text-muted">No recent public repository events are currently available in the GitHub activity feed. GitHub's public events API provides a limited history of approximately 90 days.</p>
+              <p className="mt-2 text-sm text-muted">No recent public repository events are currently available in the GitHub activity feed. GitHub&aposs public events API provides a limited history of approximately 90 days.</p>
             ) : (
               <ul className="mt-3 space-y-2 text-sm">
                 {external.map((a) => (
