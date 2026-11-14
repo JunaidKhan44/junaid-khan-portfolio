@@ -2,6 +2,7 @@ import Image from "next/image";
 import { about, site } from "@/lib/data";
 import { Reveal } from "./Reveal";
 import { Section } from "./Section";
+import { assetPath } from "@/lib/utils";
 
 export function About({ years }: { years: number }) {
   return (
@@ -28,14 +29,16 @@ export function About({ years }: { years: number }) {
         </Reveal>
         <Reveal delay={0.1}>
           <div className="glass relative overflow-hidden rounded-3xl p-2">
-            <Image
-              src="/assets/img/about2.png"
-              alt="Illustration of a developer workspace"
-              width={1536}
-              height={1024}
-              sizes="(min-width: 1024px) 480px, 100vw"
-              className="h-auto w-full rounded-[1.25rem]"
-            />
+   
+<Image
+  src={assetPath("/assets/img/about2.png")}
+  alt="Illustration of a developer workspace"
+  width={1536}
+  height={1024}
+  sizes="(min-width: 1024px) 480px, 100vw"
+  className="h-auto w-full rounded-[1.25rem]"
+/>
+
           </div>
         </Reveal>
       </div>
