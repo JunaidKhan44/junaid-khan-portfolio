@@ -1,0 +1,373 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-2: var(--accent-2);
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-space), var(--font-inter), ui-sans-serif, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+}
+
+:root {
+  --bg: #07080d;
+  --surface: rgba(255, 255, 255, 0.035);
+  --surface-2: rgba(255, 255, 255, 0.07);
+  --fg: #eceef5;
+  --muted: #9aa1b5;
+  --line: rgba(255, 255, 255, 0.09);
+  --accent: #5eead4;
+  --accent-2: #a78bfa;
+  --glow-1: rgba(94, 234, 212, 0.16);
+  --glow-2: rgba(167, 139, 250, 0.16);
+  --shadow: 0 20px 60px -20px rgba(0, 0, 0, 0.6);
+  color-scheme: dark;
+}
+
+:root[data-theme="light"] {
+  --bg: #f6f7fb;
+  --surface: rgba(255, 255, 255, 0.75);
+  --surface-2: rgba(15, 23, 42, 0.05);
+  --fg: #11131c;
+  --muted: #566078;
+  --line: rgba(15, 23, 42, 0.1);
+  --accent: #0d9488;
+  --accent-2: #7c3aed;
+  --glow-1: rgba(13, 148, 136, 0.13);
+  --glow-2: rgba(124, 58, 237, 0.12);
+  --shadow: 0 20px 50px -25px rgba(30, 41, 80, 0.25);
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+}
+
+
+/* Keep anchored sections visible below the navbar */
+section[id] {
+  scroll-margin-top: 6rem;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--accent) 35%, transparent);
+}
+
+/* Ambient background glow */
+.ambient {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(60rem 40rem at 12% -10%, var(--glow-1), transparent 60%),
+    radial-gradient(50rem 36rem at 95% 10%, var(--glow-2), transparent 60%),
+    radial-gradient(40rem 30rem at 50% 110%, var(--glow-1), transparent 60%);
+}
+.grid-bg {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse at center, #000 20%, transparent 70%);
+  opacity: 0.5;
+}
+
+.glass {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: var(--shadow);
+}
+
+.gradient-text {
+  background: linear-gradient(100deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 999px;
+  padding: 0.75rem 1.4rem;
+  font-weight: 600;
+  font-size: 0.925rem;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+}
+.btn:hover {
+  transform: translateY(-2px);
+}
+.btn-primary {
+  background: linear-gradient(100deg, var(--accent), var(--accent-2));
+  color: #06070b;
+  box-shadow: 0 10px 30px -10px color-mix(in srgb, var(--accent) 60%, transparent);
+}
+.btn-ghost {
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--fg);
+}
+.btn-ghost:hover {
+  border-color: color-mix(in srgb, var(--accent) 55%, var(--line));
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--surface-2);
+  padding: 0.25rem 0.7rem;
+  font-size: 0.75rem;
+  color: var(--muted);
+  transition: color 0.2s, border-color 0.2s;
+}
+.chip:hover {
+  color: var(--fg);
+  border-color: color-mix(in srgb, var(--accent) 50%, var(--line));
+}
+
+.card-hover {
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.35s ease;
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
+}
+
+.section-label {
+  font-family: var(--font-jetbrains), ui-monospace, monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+/* Horizontal carousel */
+.snap-row {
+  display: flex;
+  gap: 1.25rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  padding: 0.5rem 1.5rem 1.5rem;
+}
+.snap-row::-webkit-scrollbar {
+  display: none;
+}
+.snap-row > * {
+  scroll-snap-align: center;
+  flex: 0 0 auto;
+}
+
+/* Typing caret */
+.caret::after {
+  content: "";
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  margin-left: 3px;
+  vertical-align: -0.12em;
+  background: var(--accent);
+  animation: blink 1s steps(1) infinite;
+}
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Contribution heat cells */
+.heat-0 { background: var(--surface-2); }
+.heat-1 { background: color-mix(in srgb, var(--accent) 25%, transparent); }
+.heat-2 { background: color-mix(in srgb, var(--accent) 45%, transparent); }
+.heat-3 { background: color-mix(in srgb, var(--accent) 70%, transparent); }
+.heat-4 { background: var(--accent); }
+
+.skeleton {
+  background: linear-gradient(90deg, var(--surface-2), var(--surface), var(--surface-2));
+  background-size: 200% 100%;
+  animation: shimmer 1.6s linear infinite;
+}
+@keyframes shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+.focus-ring:focus-visible,
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 8px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .caret::after {
+    animation: none;
+  }
+}
+
+/* ───────── v2 design additions ───────── */
+
+/* Cursor spotlight on cards (vars set by components/Spotlight.tsx) */
+.card-hover,
+.spot {
+  position: relative;
+  isolation: isolate;
+}
+.card-hover::before,
+.spot::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), color-mix(in srgb, var(--accent) 16%, transparent), transparent 60%);
+}
+.card-hover:hover::before,
+.spot:hover::before {
+  opacity: 1;
+}
+
+/* Floating orbs */
+.orb {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(70px);
+  pointer-events: none;
+  animation: floaty 14s ease-in-out infinite;
+}
+@keyframes floaty {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(30px, -40px, 0); }
+}
+.float-slow { animation: bob 6s ease-in-out infinite; }
+.float-slower { animation: bob 8s ease-in-out infinite reverse; }
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Marquee */
+.marquee {
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  gap: 0.75rem;
+  animation: marquee 45s linear infinite;
+}
+.marquee:hover .marquee-track { animation-play-state: paused; }
+.marquee-rev .marquee-track { animation-direction: reverse; animation-duration: 55s; }
+@keyframes marquee {
+  to { transform: translateX(calc(-50% - 0.375rem)); }
+}
+
+/* Animated gradient hairline */
+.hairline {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent), var(--accent-2), transparent);
+  opacity: 0.5;
+}
+
+/* ───────── Certificates (coverflow) ───────── */
+.cert-row {
+  position: relative;
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  padding-block: 2.5rem 3rem;
+  perspective: 1400px;
+  cursor: grab;
+  overscroll-behavior-x: contain;
+}
+.cert-row::-webkit-scrollbar { display: none; }
+.cert-row.dragging { scroll-snap-type: none; cursor: grabbing; user-select: none; }
+.cert-row > li { flex: 0 0 auto; scroll-snap-align: center; }
+.cert-3d {
+  transform: rotateY(var(--rot, 0deg)) scale(var(--s, 1));
+  opacity: var(--o, 1);
+  will-change: transform, opacity;
+}
+.cert-tilt {
+  transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition: transform 0.25s ease-out, box-shadow 0.4s ease;
+  box-shadow: 0 30px 70px -35px color-mix(in srgb, var(--c) 70%, transparent);
+}
+.cert-tilt:hover { box-shadow: 0 40px 90px -30px color-mix(in srgb, var(--c) 85%, transparent); }
+.cert-glare {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+  background: radial-gradient(380px circle at var(--gx, 50%) var(--gy, 0%), rgba(255, 255, 255, 0.22), transparent 45%);
+}
+.cert-tilt:hover .cert-glare { opacity: 1; }
+.cert-dialog {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  margin: auto;
+  max-width: min(94vw, 1100px);
+  overflow: visible;
+}
+.cert-dialog::backdrop { background: rgba(3, 4, 8, 0.8); backdrop-filter: blur(10px); }
+.cert-dialog[open] { animation: pop 0.3s cubic-bezier(0.2, 0.8, 0.2, 1); }
+@keyframes pop {
+  from { opacity: 0; transform: scale(0.94) translateY(10px); }
+}
+.fade-key { animation: fadeUp 0.45s ease both; }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orb, .float-slow, .float-slower { animation: none; }
+  .marquee { overflow-x: auto; }
+  .marquee-track { animation: none; }
+  .cert-3d { transform: none; opacity: 1; }
+  .cert-tilt { transform: none; }
+}
